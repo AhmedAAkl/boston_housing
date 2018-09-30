@@ -1,4 +1,7 @@
-static/* linguist-vendored
+* linguist-vendored
 *.html linguist-vendored=false
+*.md linguist-vendored=false
+*.csv linguist-vendored=false
+*.ipynb linguist-vendored=false
 *.py linguist-vendored=true
 
