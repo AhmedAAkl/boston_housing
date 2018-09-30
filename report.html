@@ -13315,7 +13315,7 @@ Think about the pros and cons of adding more training points based on if the tra
 <p>The model suffers from high bias.</p>
 <p>At the start the model fits less number of data perfectly, but as the number of training increases the model training accuracy decrease.
 Because the model suffers from high bias. And by sequence the testing accuracy increases then decreases.</p>
-<p>Thus, adding more training points will benefit the model as it underfitting the dataset.</p>
+<p><strong> Thus, adding more training points will not benefit the model as it underfitting the dataset.</strong></p>
 <p>To solve this issue, one should increase the model complexity.</p>
 
 </div>
@@ -13804,7 +13804,14 @@ and can't generalize very well.</p>
 <p>in depth = 1
 the gap between the training and testing curves is small and the training and testing accuracy very low.</p>
 <p>in depth = 10</p>
-<p>the gap between the two curves is larg and the training accuracy is high and test accuracy is lowe</p>
+<p>the gap between the two curves is larg and the training accuracy is high and test accuracy is lower</p>
+<p>Can you list down what should be done to improve the model evaluation metric if you encounter a</p>
+<p>High bias model for a data set?
+I will use more complex model</p>
+<p>High variance model for a data set?
+I will use a more simple model.
+increase the number of training points
+use regularization</p>
 
 </div>
 </div>
@@ -13869,10 +13876,18 @@ and the model ability to generalize to unseen data decreases.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>The Grid Search Technique:</p>
-<p>is a method that allow us to define a grid of all parameter that will be searched using K-fold cross-validation to find the best combination of these parameters, that achieves the best performance.</p>
+<p>is a method that allow us to define a grid of all hyperparameters that will be searched using K-fold cross-validation to find the best combination of these hyperparameters, that achieves the best performance.</p>
 <p>How Grid Search optimize the learning algorithm?</p>
-<p>Grid Search tries every combination of the parameters provided to find the best model with the best performance.
+<p>Grid Search tries every combination of the hyperparameters provided to find the best model with the best performance.
 and this is an optimization for learning.</p>
+<p><strong> parameters and hyper-parameters</strong></p>
+<p>They sometimes used interchangably.
+parameters is more general term, and are related to the training data but required for the estimator</p>
+<p>hyperparameters cannot be learned within the estimator directly but set before training.</p>
+<p>for example:</p>
+<p>SVC(C = 0.1, kernel ='linear', random_state=42)</p>
+<p>C and kernel are hyperparameters,
+and random_state is a parameter</p>
 
 </div>
 </div>
@@ -13901,10 +13916,15 @@ and this is an optimization for learning.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>K-fold cross validation technique:</p>
-<p>is a techinque where the dataset is split into 'K' folds of the same size, where every fold used for testing 1 time and for training k-1 times. The final performance is calculated using the average testing performance</p>
+<p>is a techinque is used to evaluate different models on different folds and take the average evaluation metric of all models, to get a low biased estimator that generalize well on unseen data.</p>
+<p>In K-fold cross validation, the dataset is split into 'K' folds of the same size, where every fold used for testing 1 time and for training k-1 times. The final performance is calculated using the average testing performance</p>
 <p>K is the number of folds, the dataset is divided to it equally.</p>
-<p>The drawback of using only training and testing set:
-is that the model still has risk to overfit the test set as the parameter will tewak until the estimator performs optimally.
+<p>Its application in Grid Search:</p>
+<p>Start with one hyperparameter combination from the grid and keep it constant for one round of whole k-fold cross validation process: the whole splitting into kfolds, training and validating on one fold and so on.
+This helps us in getting an unbiased estimate of model evaluation metric which helps us decide in a more unbiased way, whether the given combination of hyperparameters is best for the particular data set or not. 
+This process is repeated for all combinations of hyperparameters in the grid.</p>
+<p>The drawback of using only training and testing set:</p>
+<p>is that the model still has risk to overfit the test set as the parameter will tewak until the estimator performs optimally.
  to solve this problem 
 The trainig set is split into k smaller sets and a test set should still be held out for final evaluation.</p>
 
@@ -13943,7 +13963,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13965,7 +13985,11 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]}</span>
+    
+    <span class="c1">#params = {&#39;max_depth&#39;:[1,2,3,4,5,6,7,8,9,10]}</span>
+    
+    <span class="c1"># or write it as</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)}</span>
 
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">)</span>
@@ -14251,6 +14275,7 @@ Because,</p>
 <p>3- only 3 features for training the learning algorithm are not sufficient, may be there are more features that affect the learning such as public transportation or crime rates.</p>
 <p>4- data collected from Boston will not applicable in a rural city, because the demographics change. except they have the same data distribution.</p>
 <p>5- It is fair to jude the price of home based on the characteristic of the entire neighborhood.</p>
+<p>6- I think the model is not consistent enough for making predictions as there is a big range in price nearly $69,044.61</p>
 
 </div>
 </div>
