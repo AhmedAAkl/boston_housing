@@ -11974,9 +11974,9 @@ Standard deviation of prices: $165171.13154429477
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Assuming that other features are constant.</p>
+<p>If you assume that other features are constant.</p>
 <p>For the first feature: RM:
-increasing the number of rooms will demand more spance and will increase the price which is MEDV value.</p>
+increasing the number of rooms will require more space and will increase the price which is MEDV value.</p>
 <p>For the second feature: LSTAT:
 As the percentage of lower class workers increase, the MEDV will decrease.</p>
 <p>For the third feature: PTRATIO:
@@ -12213,7 +12213,8 @@ As the ratio of student to teachers increasse, the MEDV will decrease.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>We need a data set to test our model or choose one model from different models</p>
+<p>Splitting data is very beneficial for learning algorithm 
+as we need a data set to test our model or choose one model from different models</p>
 <p>Thus, splitting the data to train/test split is beneficial to train and test the model in different dataset.
 And this enable us to tune the model hyper-parameters.</p>
 <p>If our model fits the training data correctly with 100% and failed to fit the test data, then the model suffers from overfitting and can't generalize very well. The model is very complex.</p>
@@ -13790,16 +13791,15 @@ RK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>1- Using depth of 1.
-The model suffers from high bias which is a sign of underfitting.
+<p>1- Using depth of 1.</p>
+<p>The model suffers from high bias which is a sign of underfitting.
 the training accuracy nearly 50% and the test accuracy nearly 35%</p>
 <p>the model did not fit the training data well, and by sequence the testing data, and this is a sign of underfitting.
 as the model very simple to fit the data.</p>
 <p>2- depth of 10</p>
-<p>when the model trained with max_depth =10 is suffers from high variance.
+<p>when the model trained with max_depth =10 is suffers from high variance which is a sign of overfitting.
 As the model fits the training data very well, training accuracy nearly 95%, but it failed to fit the testing data
 and can't generalize very well.</p>
-<p>This is a sign of overfitting.</p>
 <p><strong>Visual cues.</strong></p>
 <p>in depth = 1
 the gap between the training and testing curves is small and the training and testing accuracy very low.</p>
@@ -13868,10 +13868,11 @@ and the model ability to generalize to unseen data decreases.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>The Grid Search Technique:
-it allow us to define a grid of that will searched using K-fold cross-validation to find the best combination of these parameters, that achieves the best performance.</p>
+<p>The Grid Search Technique:</p>
+<p>is a method that allow us to define a grid of all parameter that will be searched using K-fold cross-validation to find the best combination of these parameters, that achieves the best performance.</p>
 <p>How Grid Search optimize the learning algorithm?</p>
-<p>Grid Search tries every combination of the parameters provided to find the best model with the best performance.</p>
+<p>Grid Search tries every combination of the parameters provided to find the best model with the best performance.
+and this is an optimization for learning.</p>
 
 </div>
 </div>
@@ -13900,10 +13901,8 @@ it allow us to define a grid of that will searched using K-fold cross-validation
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>K-fold cross validation technique:</p>
-<p>is a techinque where the dataset is split into 'K' folds of the same size.
-Every fold used for testing 1 time and for training k-1 times.
-the final performance is calculated using the average testing performance</p>
-<p>K is the number of folds, the dataset is divided to it.</p>
+<p>is a techinque where the dataset is split into 'K' folds of the same size, where every fold used for testing 1 time and for training k-1 times. The final performance is calculated using the average testing performance</p>
+<p>K is the number of folds, the dataset is divided to it equally.</p>
 <p>The drawback of using only training and testing set:
 is that the model still has risk to overfit the test set as the parameter will tewak until the estimator performs optimally.
  to solve this problem 
